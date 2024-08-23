@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'profile/show'
+  get 'profile/edit'
+  get 'profile/update'
   get 'private/test'
   devise_for :users,
     path: '',
@@ -11,4 +14,6 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
+    resource :profile, only: [:show, :edit, :update]
+
 end
