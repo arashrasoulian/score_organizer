@@ -3,14 +3,25 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
   respond_to :json
+
   def create
     build_resource(sign_up_params)
     resource.save
-    sign_in(resource_name, resource)
-    render json: resource
+    if resource.persisted?
+      sign_in(resource_name, resource)
+      render json: { message: 'Signed up successfully.', user: resource }, status: :ok
+    else
+      render json: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }, status: :unprocessable_entity
+    end
   end
+
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :phone, :name, :city)
+  end
+
   # GET /resource/sign_up
   # def new
   #   super
