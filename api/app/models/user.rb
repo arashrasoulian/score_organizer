@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+
+    has_many :scores, dependent: :destroy
+    has_many :storings, dependent: :destroy
+    has_many :stored_scores, through: :storings, source: :score
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
