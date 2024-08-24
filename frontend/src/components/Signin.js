@@ -1,14 +1,20 @@
 import { useRef } from "react"
-const Login = ({setCurrUser, setShow}) =>{
+import { useNavigate } from "react-router-dom"
+const Signin = ({setCurrUser}) =>{
+  const navigate = useNavigate()
   const formRef=useRef()
   const login=async (userInfo, setCurrUser)=>{
     const url="http://localhost:3000/login"
     try{
+
         const response=await fetch(url, {
+
             method: "post",
             headers: {
                 'content-type': 'application/json',
-                'accept': 'application/json'
+                'accept': 'application/json',
+                // 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+
             },
             body: JSON.stringify(userInfo)
         })
@@ -18,8 +24,10 @@ const Login = ({setCurrUser, setShow}) =>{
         if(!response.ok)
           throw data.error
         localStorage.setItem("token", response.headers.get("Authorization"))
+
         setCurrUser(data)
-        
+        navigate("/")
+
     }catch(error){
        console.log("error", error)
     }
@@ -33,10 +41,12 @@ const Login = ({setCurrUser, setShow}) =>{
       }
       login(userInfo, setCurrUser)
       e.target.reset()
+
   }
   const handleClick=e=>{
     e.preventDefault()
-    setShow(false)
+    navigate("/signup")
+
   }
   return(
     <div>
@@ -45,11 +55,11 @@ const Login = ({setCurrUser, setShow}) =>{
         <br/>
         Password: <input type="password" name='password' placeholder="password" />
         <br/>
-        <input type='submit' value="Login" />
+        <input type='submit' value="Signin" />
       </form>
       <br />
       <div>Not registered yet, <a href="#signup" onClick={handleClick} >Signup</a> </div>
     </div>
   )
 }
-export default Login
+export default Signin

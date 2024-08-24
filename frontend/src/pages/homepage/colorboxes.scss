@@ -1,0 +1,56 @@
+.sky-blue {
+  background-color: $sky-blue;
+}
+
+.slate-blue {
+  background-color: $slate-blue;
+}
+
+.deep-blue {
+  background-color: $deep-blue;
+}
+
+.navy-blue {
+  background-color: $navy-blue;
+}
+
+.ivory {
+  background-color: $ivory;
+}
+
+.light-ivory {
+  background-color: $light-ivory;
+}
+
+.sand {
+  background-color: $sand;
+}
+
+.tan {
+  background-color: $tan;
+}
+
+.muted-rose {
+  background-color: $muted-rose;
+}
+
+.deep-brown {
+  background-color: $deep-brown;
+}
+
+.brown {
+  background-color: $brown;
+}
+
+// Custom styles for color boxes
+.color-box {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-transform: capitalize;
+  border-radius: 8px;
+  margin: 10px;
+  text-align: center;
+}
