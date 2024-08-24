@@ -16,4 +16,9 @@ Rails.application.routes.draw do
     }
     resource :profile, only: [:show, :edit, :update]
 
+    namespace :api do
+      namespace :v1 do
+        resources :scores, only: [:create, :get]
+      end
+    end
 end
