@@ -7,7 +7,7 @@ const Classesnotes = () => {
   }
   return (
     <div>
-      <div class="col py-3">classes notes</div>
+      <div className="col py-3">classes notes</div>
     </div>
   );
 };

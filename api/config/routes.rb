@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
     namespace :api do
       namespace :v1 do
-        resources :scores, only: [:create, :get]
+        resources :scores, only: [:index, :create, :get]
       end
     end
 end

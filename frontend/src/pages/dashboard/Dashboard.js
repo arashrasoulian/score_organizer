@@ -7,7 +7,7 @@ export function Dashboard() {
   return (
     <div>
       <div className="container-fluid">
-        <div class="row flex-nowrap">
+        <div className="row flex-nowrap">
           <Sidebar />
           <Outlet />
         </div>
