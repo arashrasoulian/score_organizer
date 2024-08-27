@@ -1,56 +1,56 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
+import { useSelector } from 'react-redux';
 
 export function Myverticallycenteredmodal(props) {
-
-  const [file, setFile] = useState(null);
-  const [error, setError] = useState(null);
-
-  const handleFileChange = (e) => {
-    setFile(e.target.value);
-  };
-  // const userInfo = {
-  //   user: {
-  //     email: data.email,
-  //     password: data.password,
-  //     phone: data.phone,
-  //     city: data.city,
-  //     name: data.first_name + " " + data.last_name,
-  //   },
+  const [scorePdf, setScorePdf] = useState('');
+  const [name, setName] = useState('');
+  const [composer, setComposer] = useState('');
+  const [scoreType, setScoreType] = useState('');
+  const [message, setMessage] = useState('');
+  const token = useSelector(state => state.user.token);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
 
-    // if (!file) {
-    //   setError("Please select a file to upload.");
-    //   return;
-    // }
-
-    // const formData = new FormData();
-    // formData.append('score[pdf]', file);
+    const scoreData = {
+      score: {
+        score_pdf: scorePdf,
+        name: name,
+        composer: composer,
+        score_type: scoreType,
+      }
+    };
 
     try {
       const response = await fetch('http://localhost:3000/api/v1/scores', {
         method: 'POST',
-        body: JSON.stringify({score_pdf:file}),
+        body: JSON.stringify(scoreData),
         headers: {
-          'Authorization': localStorage.getItem('token'),
+          'Authorization': ` ${token}`,
+          'Content-Type': 'application/json'
         },
+        credentials: 'include'
       });
 
-      if (!response.ok) {
-        throw new Error('Something went wrong with the upload.');
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage('Score added successfully!');
+        console.log("Success:", data);
+        // Clear the form or close the modal here if needed
+      } else {
+        setMessage('There was an error adding the score.');
+        console.log("Error:", data);
       }
 
-      const data = await response.json();
-      console.log('Upload successful', data);
-      props.onHide(); // Close the modal after successful upload
     } catch (error) {
-      setError(error.message);
+      console.error('Error:', error);
+      setMessage('There was an error adding the score.');
     }
   };
-
 
   return (
     <Modal
@@ -65,14 +65,46 @@ export function Myverticallycenteredmodal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="pdf">Upload PDF:</label>
-          <input type="text" id="pdf"  onChange={handleFileChange} />
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Upload</button>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Score PDF URL:</label>
+            <input
+              type="text"
+              value={scorePdf}
+              onChange={(e) => setScorePdf(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Name:</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Composer:</label>
+            <input
+              type="text"
+              value={composer}
+              onChange={(e) => setComposer(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Score Type:</label>
+            <input
+              type="text"
+              value={scoreType}
+              onChange={(e) => setScoreType(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Add Score</button>
+          {message && <p>{message}</p>}
+        </form>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

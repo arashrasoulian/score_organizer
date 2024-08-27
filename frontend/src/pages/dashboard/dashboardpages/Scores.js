@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { Myverticallycenteredmodal } from "../../../components/dashboardcomponents/Myverticallycenteredmodal";
+import ScoreList from "../../../components/Scorelist";
 
 const Scores = () => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -13,10 +14,11 @@ const Scores = () => {
 
   return (
     <div>
-      <div class="col py-3">scores</div>
+      <div className="col py-3">scores</div>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         add new pdf
       </Button>
+      <ScoreList />
       <Myverticallycenteredmodal
         show={modalShow}
         onHide={() => setModalShow(false)}

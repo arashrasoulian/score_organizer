@@ -2,19 +2,19 @@ class ProfileController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    @user = current_user
+    render json: current_user
   end
 
   def edit
-    @user = current_user
+    render json: current_user
   end
 
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to profile_path, notice: 'Profile updated successfully.'
+      render json: { user: @user, message: 'Profile updated successfully.' }, status: :ok
     else
-      render :edit
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
