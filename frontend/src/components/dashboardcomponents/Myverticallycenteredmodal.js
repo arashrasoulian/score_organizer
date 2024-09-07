@@ -1,54 +1,68 @@
-import { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import Modal from 'react-bootstrap/Modal';
-import { useSelector } from 'react-redux';
+import { useState } from "react";
+import { Button } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
 
 export function Myverticallycenteredmodal(props) {
-  const [scorePdf, setScorePdf] = useState('');
-  const [name, setName] = useState('');
-  const [composer, setComposer] = useState('');
-  const [scoreType, setScoreType] = useState('');
-  const [message, setMessage] = useState('');
-  const token = useSelector(state => state.user.token);
+  const [imageFile, setimagefile] = useState(null);
+  // const [scorePdf, setScorePdf] = useState("");
+  const [name, setName] = useState("");
+  const [composer, setComposer] = useState("");
+  const [scoreType, setScoreType] = useState("");
+  const [message, setMessage] = useState("");
+
+  const token = useSelector((state) => state.user.token);
+
+  const handleFileChange = (e) => {
+    setimagefile(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage('');
+    setMessage("");
+
+
+
+    const formData = new FormData();
+    formData.append("score[image]", imageFile);
+    formData.append("score[name]", name);
+    formData.append("score[composer]", composer);
+    formData.append("score[score_type]", scoreType);
 
     const scoreData = {
       score: {
-        score_pdf: scorePdf,
+        image: imageFile,
+        // score_pdf: scorePdf,
         name: name,
         composer: composer,
         score_type: scoreType,
-      }
+      },
     };
 
     try {
-      const response = await fetch('http://localhost:3000/api/v1/scores', {
-        method: 'POST',
-        body: JSON.stringify(scoreData),
+      const response = await fetch("http://localhost:3000/api/v1/scores", {
+        method: "POST",
+        body: formData,
         headers: {
-          'Authorization': ` ${token}`,
-          'Content-Type': 'application/json'
+          Authorization: ` ${token}`,
+          // "Content-Type": "application/json",
         },
-        credentials: 'include'
+        credentials: "include",
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setMessage('Score added successfully!');
+        setMessage("Score added successfully!");
         console.log("Success:", data);
         // Clear the form or close the modal here if needed
       } else {
-        setMessage('There was an error adding the score.');
+        setMessage("There was an error adding the score.");
         console.log("Error:", data);
       }
-
     } catch (error) {
-      console.error('Error:', error);
-      setMessage('There was an error adding the score.');
+      console.error("Error:", error);
+      setMessage("There was an error adding the score.");
     }
   };
 
@@ -67,6 +81,10 @@ export function Myverticallycenteredmodal(props) {
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div>
+            <label>image:</label>
+            <input type="file" accept="image/*" onChange={handleFileChange} required />
+          </div>
+          {/* <div>
             <label>Score PDF URL:</label>
             <input
               type="text"
@@ -74,7 +92,7 @@ export function Myverticallycenteredmodal(props) {
               onChange={(e) => setScorePdf(e.target.value)}
               required
             />
-          </div>
+          </div> */}
           <div>
             <label>Name:</label>
             <input

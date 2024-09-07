@@ -21,10 +21,12 @@ const ScoreList = () => {
 
         if (!response.ok) {
           throw new Error('Failed to fetch scores');
+
         }
 
         const data = await response.json();
         setScores(data);
+
         setLoading(false);
       } catch (error) {
         console.error('Error fetching scores:', error);
@@ -48,6 +50,14 @@ const ScoreList = () => {
         <ul>
           {scores.map(score => (
             <li key={score.id}>
+              <p>score :{score.image_url}</p>
+              {score.image_url && (
+            <img
+              src={score.image_url}
+              alt={`Score: ${score.name}`}
+              style={{ maxWidth: '200px' }}
+            />
+          )}
               <h3>{score.name}</h3>
               <p>Composer: {score.composer}</p>
               <p>Type: {score.score_type}</p>
