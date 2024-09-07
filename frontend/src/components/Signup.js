@@ -35,9 +35,8 @@ const Signup = ({ setCurrUser }) => {
       user: {
         email: data.email,
         password: data.password,
-        phone: data.phone,
-        city: data.city,
-        name: data.first_name + " " + data.last_name,
+        // city: data.city,
+        // name: data.first_name + " " + data.last_name,
       },
     };
     signup(userInfo, setCurrUser);
@@ -53,17 +52,17 @@ const Signup = ({ setCurrUser }) => {
       <form ref={formRef} onSubmit={handleSubmit}>
         Email: <input type="email" name="email" placeholder="email" required />
         <br />
-        first name:{" "}
+        {/* first name:{" "}
         <input type="text" name="first_name" placeholder="merila" required />
         <br />
         last name:{" "}
         <input type="text" name="last_name" placeholder="zareii" required />
         <br />
         city: <input type="text" name="city" placeholder="tehran" required />
-        <br />
-        phone number:{" "}
+        <br /> */}
+        {/* phone number:{" "}
         <input type="tel" name="phone" placeholder="091211111" required />
-        <br />
+        <br /> */}
         {/* are you a teacher: <input type="checkbox" name='teacher' placeholder="email" defaultChecked={true} />
       <br /> */}
         Password:{" "}

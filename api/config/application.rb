@@ -1,4 +1,3 @@
-
 require_relative "boot"
 
 require "rails/all"
@@ -7,9 +6,11 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-
-Dotenv::Railtie.load if defined?(Dotenv)
-
+# Load dotenv only in development or test environment
+if ['development', 'test'].include? ENV['RAILS_ENV']
+  require 'dotenv/rails'
+  Dotenv::Rails.load
+end
 
 module Api
   class Application < Rails::Application
@@ -35,5 +36,9 @@ module Api
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Only loads a smaller set of middleware suitable for API only apps.
+    # Middleware like session, flash, cookies can be added back manually.
+    config.api_only = true
   end
 end
