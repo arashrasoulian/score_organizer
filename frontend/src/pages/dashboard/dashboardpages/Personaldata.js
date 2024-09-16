@@ -4,7 +4,6 @@ const Personaldata = () => {
 
   const currUser = useSelector((state) => state.user.currUser);
   const token = useSelector(state => state.user.token);
-  console.log(token );
 
   if (!currUser) {
     return <p>Please log in to view your profile.</p>;

@@ -4,8 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useSelector } from "react-redux";
 
 export function Myverticallycenteredmodal(props) {
-  const [imageFile, setimagefile] = useState(null);
-  // const [scorePdf, setScorePdf] = useState("");
+  const [pdfFile, setpdffile] = useState(null);
   const [name, setName] = useState("");
   const [composer, setComposer] = useState("");
   const [scoreType, setScoreType] = useState("");
@@ -14,7 +13,7 @@ export function Myverticallycenteredmodal(props) {
   const token = useSelector((state) => state.user.token);
 
   const handleFileChange = (e) => {
-    setimagefile(e.target.files[0]);
+    setpdffile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -24,20 +23,11 @@ export function Myverticallycenteredmodal(props) {
 
 
     const formData = new FormData();
-    formData.append("score[image]", imageFile);
+    formData.append("score[pdf]", pdfFile);
     formData.append("score[name]", name);
     formData.append("score[composer]", composer);
     formData.append("score[score_type]", scoreType);
 
-    const scoreData = {
-      score: {
-        image: imageFile,
-        // score_pdf: scorePdf,
-        name: name,
-        composer: composer,
-        score_type: scoreType,
-      },
-    };
 
     try {
       const response = await fetch("http://localhost:3000/api/v1/scores", {
@@ -55,7 +45,6 @@ export function Myverticallycenteredmodal(props) {
       if (response.ok) {
         setMessage("Score added successfully!");
         console.log("Success:", data);
-        // Clear the form or close the modal here if needed
       } else {
         setMessage("There was an error adding the score.");
         console.log("Error:", data);
@@ -82,17 +71,9 @@ export function Myverticallycenteredmodal(props) {
         <form onSubmit={handleSubmit}>
           <div>
             <label>image:</label>
-            <input type="file" accept="image/*" onChange={handleFileChange} required />
+            <input type="file" accept="application/pdf" onChange={handleFileChange} required />
           </div>
-          {/* <div>
-            <label>Score PDF URL:</label>
-            <input
-              type="text"
-              value={scorePdf}
-              onChange={(e) => setScorePdf(e.target.value)}
-              required
-            />
-          </div> */}
+
           <div>
             <label>Name:</label>
             <input

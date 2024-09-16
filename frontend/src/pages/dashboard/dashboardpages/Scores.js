@@ -14,15 +14,18 @@ const Scores = () => {
 
   return (
     <div>
+
       <div className="col py-3">scores</div>
       <Button variant="primary" onClick={() => setModalShow(true)}>
         add new pdf
       </Button>
+
       <ScoreList />
       <Myverticallycenteredmodal
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
+
     </div>
   );
 };
