@@ -1,5 +1,5 @@
 // src/components/navbar/Navbar.js
-import {  Nav } from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrUser } from "../../store/userSlice";
 import Logout from "../Logout";
@@ -10,17 +10,47 @@ export function Navbar() {
   const currUser = useSelector((state) => state.user.currUser);
 
   return (
-    <Nav className="navbar-container">
-      Hello {currUser ? currUser.email : null}
-      {currUser && (
-          <Link to="/dashboard" className="nav-link">
-            Dashboard
-          </Link>
-        )}
-      <div className="logout-button-navbar">
-
-        <Logout setCurrUser={() => dispatch(clearCurrUser())} />
+    <nav className="navbar">
+      <div className="navbar-left">
+        {/* Logo */}
+        <Link to="/" className="logo">
+          <img src="/path-to-logo.png" alt="Logo" />
+        </Link>
+        Hello {currUser ? currUser.email : null}
       </div>
-    </Nav>
+
+      <div className="navbar-right">
+        {!currUser ? (
+          <>
+            <Link to="/signin" className="nav-link">
+              Sign In
+            </Link>
+            <Link to="/signup" className="nav-link">
+              Sign Up
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+
+            <Link to="/" className="nav-link">
+              Home
+            </Link>
+            <Button className="btn logout-button-navbar">
+              <Logout setCurrUser={() => dispatch(clearCurrUser())} />
+            </Button>
+            <Link to="/profile" className="nav-link">
+              <img
+                src="/path-to-default-pic.png"
+                alt="Profile"
+                className="profile-picture"
+              />
+            </Link>
+          </>
+        )}
+      </div>
+    </nav>
   );
 }
