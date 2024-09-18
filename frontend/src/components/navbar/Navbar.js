@@ -1,5 +1,5 @@
 // src/components/navbar/Navbar.js
-import { Button, Nav } from "react-bootstrap";
+import { Button, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrUser } from "../../store/userSlice";
 import Logout from "../Logout";
@@ -10,13 +10,14 @@ export function Navbar() {
   const currUser = useSelector((state) => state.user.currUser);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar-container sticky-top">
       <div className="navbar-left">
-        {/* Logo */}
-        <Link to="/" className="logo">
-          <img src="/path-to-logo.png" alt="Logo" />
+        <Link to="/" className="navbar-logo">
+          <img src="logo2.png" alt="Logo" />
         </Link>
-        Hello {currUser ? currUser.email : null}
+        {currUser ? (
+          <span className="welcome-navbar">hello {currUser.name} </span>
+        ) : null}
       </div>
 
       <div className="navbar-right">
@@ -31,6 +32,8 @@ export function Navbar() {
           </>
         ) : (
           <>
+     
+
             <Link to="/dashboard" className="nav-link">
               Dashboard
             </Link>
@@ -38,16 +41,27 @@ export function Navbar() {
             <Link to="/" className="nav-link">
               Home
             </Link>
-            <Button className="btn logout-button-navbar">
+            <div className="logout-button-navbar mx-4">
               <Logout setCurrUser={() => dispatch(clearCurrUser())} />
-            </Button>
+            </div>
             <Link to="/profile" className="nav-link">
-              <img
-                src="/path-to-default-pic.png"
-                alt="Profile"
-                className="profile-picture"
-              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-person-circle"
+                viewBox="0 0 16 16"
+              >
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  fill-rule="evenodd"
+                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                />
+              </svg>
             </Link>
+
+
           </>
         )}
       </div>
