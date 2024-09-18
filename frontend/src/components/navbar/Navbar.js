@@ -16,35 +16,33 @@ export function Navbar() {
           <img src="logo2.png" alt="Logo" />
         </Link>
         {currUser ? (
-          <span className="welcome-navbar">hello {currUser.name} </span>
+          <span className="welcome-navbar d-none d-md-block">hello {currUser.name} </span>
         ) : null}
       </div>
 
       <div className="navbar-right">
         {!currUser ? (
           <>
-            <Link to="/signin" className="nav-link">
+            <Link to="/signin" className="nav-sign-link">
               Sign In
             </Link>
-            <Link to="/signup" className="nav-link">
+            <Link to="/signup" className="nav-sign-link">
               Sign Up
             </Link>
           </>
         ) : (
           <>
-     
-
-            <Link to="/dashboard" className="nav-link">
+            <Link to="/dashboard/scores" className="nav-link">
               Dashboard
             </Link>
 
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link d-none d-md-block">
               Home
             </Link>
             <div className="logout-button-navbar mx-4">
               <Logout setCurrUser={() => dispatch(clearCurrUser())} />
             </div>
-            <Link to="/profile" className="nav-link">
+            <Link to="/dashboard/personaldata" className="nav-link d-none d-md-block">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -60,8 +58,6 @@ export function Navbar() {
                 />
               </svg>
             </Link>
-
-
           </>
         )}
       </div>
