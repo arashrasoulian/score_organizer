@@ -1,44 +1,71 @@
-// styles.scss or any of your scss files
-.landingpage-slideshow-top{
-  background-color: $ocean-teal;
-  height: 50vh;
+.landingpage-container {
   margin: 3vh 9vw;
+}
+
+.landingpage-slideshow-box-top {
+  background-color: $ocean-teal;
+  height: 58vh;
+
   border-bottom-left-radius: 30px 30px;
   border-bottom-right-radius: 30px 30px;
   position: relative;
 
 }
-.landingpage-slide-top-button{
+
+.landingpage-slideshow-top {
+  position: absolute;
+  bottom: -5vh;
+  left: 0vw;
+}
+
+
+.landingpage-slide-top-button {
   position: absolute;
 
-  left:5vw ;
+  left: 10vw;
   bottom: 10vh;
 
 }
 
-.landingpage-slide-top-button .sign-link{
+.landingpage-slide-top-button .sign-link {
   text-decoration: none;
   font-size: 0.8rem;
   background-color: $sunny-yellow;
   padding: 7px 36px;
   border-radius: 5px;
-color: black;
+  color: black;
 }
-.landingpage-slideshow-top .svglink{
+
+.landingpage-slideshow-container {
+  position: relative;
+  height: 50vh;
+}
+
+.landingpage-slideshow-top .svglink {
   position: absolute;
-  right:8vw ;
-  bottom: 12.5vh;
+  right: 10vw;
+  top: 12.5vh;
 
 }
-.landingpage-slide-top-title{
+
+.landingpage-slide-top-title {
   position: absolute;
-  left:5vw ;
+  left: 10vw;
   top: 8vh;
   max-width: 26vw;
 
 }
-.landingpage-slideshow-top  p{
-font-size: 3rem;
 
+.landingpage-slideshow-top p {
+  font-size: 2.2rem;
+}
+
+.landingpage-data-boxes {
+  margin: 2vh 0px;
+}
+
+.landingpage-sheetnumber {
+  height: 20vh;
+  background-color: $ocean-teal;
 
 }
