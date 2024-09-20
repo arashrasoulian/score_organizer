@@ -2,70 +2,39 @@
   margin: 3vh 9vw;
 }
 
-.landingpage-slideshow-box-top {
-  background-color: $ocean-teal;
-  height: 58vh;
-
-  border-bottom-left-radius: 30px 30px;
-  border-bottom-right-radius: 30px 30px;
-  position: relative;
-
-}
-
-.landingpage-slideshow-top {
-  position: absolute;
-  bottom: -5vh;
-  left: 0vw;
-}
-
-
-.landingpage-slide-top-button {
-  position: absolute;
-
-  left: 10vw;
-  bottom: 10vh;
-
-}
-
-.landingpage-slide-top-button .sign-link {
-  text-decoration: none;
-  font-size: 0.8rem;
-  background-color: $sunny-yellow;
-  padding: 7px 36px;
-  border-radius: 5px;
-  color: black;
-}
-
-.landingpage-slideshow-container {
-  position: relative;
-  height: 50vh;
-}
-
-.landingpage-slideshow-top .svglink {
-  position: absolute;
-  right: 10vw;
-  top: 12.5vh;
-
-}
-
-.landingpage-slide-top-title {
-  position: absolute;
-  left: 10vw;
-  top: 8vh;
-  max-width: 26vw;
-
-}
-
-.landingpage-slideshow-top p {
-  font-size: 2.2rem;
-}
-
-.landingpage-data-boxes {
+.landingpage-static {
   margin: 2vh 0px;
-}
-
-.landingpage-sheetnumber {
   height: 20vh;
   background-color: $ocean-teal;
+  position: relative;
 
+}
+
+.landingpage-static-data {
+  position: absolute;
+  bottom: 3vh;
+  left: 5vh;
+
+}
+
+.landingpage-link-box {
+  margin: 2vh 0px;
+  height: 20vh;
+  background-color: $sunny-yellow;
+  position: relative;
+
+}
+
+.landingpage-static-data p {
+  font-size: 2rem;
+}
+
+.landingpage-link-data {
+  position: absolute;
+  bottom:3vh;
+  left: 5vh;
+}
+
+.landingpage-link-data p {
+  font-size: 2rem;
 }

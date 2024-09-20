@@ -14,6 +14,11 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
+    namespace :api do
+      namespace :v1 do
+        get 'statistics', to: 'statistics#index'
+      end
+    end
     resource :profile, only: [:show, :edit, :update]
 
     namespace :api do
