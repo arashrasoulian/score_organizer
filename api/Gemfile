@@ -6,6 +6,7 @@ gem 'rack-cors'
 gem 'devise'
 gem 'devise-jwt'
 gem 'aws-sdk-s3'
+gem 'yaml'
 
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
