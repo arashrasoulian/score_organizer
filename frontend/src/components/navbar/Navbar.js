@@ -9,6 +9,13 @@ export function Navbar() {
   const dispatch = useDispatch();
   const currUser = useSelector((state) => state.user.currUser);
 
+  function emailName( email ) {
+    // Extract the part before '@'
+    const username = email.split('@')[0];
+
+    return username;
+  }
+
   return (
     <nav className="navbar-container sticky-top">
       <div className="navbar-left">
@@ -16,7 +23,7 @@ export function Navbar() {
           <img src="logo2.png" alt="Logo" />
         </Link>
         {currUser ? (
-          <span className="welcome-navbar d-none d-md-block">hello {currUser.name} </span>
+          <span className="welcome-navbar d-none d-md-block">hello {emailName(currUser.email)} </span>
         ) : null}
       </div>
 

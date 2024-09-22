@@ -3,13 +3,44 @@
 .homepage-container {
   width: 100vw;
   height: calc(100vh - 50px);
-  // margin: auto; /* Center the container */
   overflow: hidden;
-  /* Hide any overflow to avoid scrollbars */
-  // display: flex; /* Optional: for centering content within the container */
-  // justify-content: center; /* Optional: for centering content horizontally */
-  // align-items: center; /* Optional: for centering content vertically */
 }
+
+.homepage-top-cover{
+  background-image: url(../../../public/images/homepagecover.png);
+  height: 50vh;
+  width: 100%;
+  background-position: center center; /* Vertically centers the image */
+  background-size: 100% auto; /* Stretches the image horizontally to full width, auto for height */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.homepage-top-cover h1{
+  position: absolute;
+  top:10vh;
+  left: 3vw;
+  color: white ;
+  font-size: 2rem;
+  width: 20vw;
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .classroom-button-container {
   display: flex;
   justify-content: center; /* Horizontally centers the button */
@@ -54,5 +85,5 @@
 .link-bottom-homepage {
   color: white;
   text-decoration: none;
- 
+
 }
