@@ -19,7 +19,12 @@ export default function Homepage() {
     "Score",
   ];
   return (
-    <div className="container homepage-container">
+    <div className="homepage-container">
+      <div className="homepage-top-cover">
+        <h1>Discover the Beauty of Music</h1>
+
+      </div>
+
       <div className="classroom-button-container">
         <div className=" classroom-button-homepage ">
           <Link to="/classroom" className="link-bottom-homepage ">
