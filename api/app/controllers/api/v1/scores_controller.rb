@@ -1,6 +1,7 @@
 module Api
   module V1
     class ScoresController < ApplicationController
+      
       def home_page_data
         new_uploaded_scores = Score.order(created_at: :desc).limit(5)
 

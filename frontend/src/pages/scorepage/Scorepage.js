@@ -25,7 +25,7 @@ const ScorePage = () => {
           Authorization: ` ${token}`,
         },
         body: JSON.stringify({
-          score_id: score.id,
+          score_id: data.id,
           session_type: sessionType,
         }),
 
@@ -37,9 +37,12 @@ const ScorePage = () => {
         setMessage(data.message);
       } else {
         setMessage("Error adding score to your collection.");
+        
       }
     } catch (error) {
       setMessage("Something went wrong.");
+      console.log(error);
+
     }
   };
 
