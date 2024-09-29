@@ -1,7 +1,7 @@
 module Api
   module V1
     class StoringsController < ApplicationController
-      before_action :authenticate_user!
+      # before_action :authenticate_user!
 
       def create
         score = Score.find(params[:score_id])
