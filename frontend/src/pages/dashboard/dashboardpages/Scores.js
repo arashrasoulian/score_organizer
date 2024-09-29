@@ -10,7 +10,7 @@ const Scores = () => {
   const { data, loading, error } = useFetch(
     "http://localhost:3000/api/v1/scores"
   );
-const titles = ["Repertoire","Practicing","orcestral","for future"]
+  const titles = ["Repertoire", "Practicing", "orcestral", "for future"];
 
   useEffect(() => {
     console.log(data);
@@ -49,18 +49,16 @@ const titles = ["Repertoire","Practicing","orcestral","for future"]
         add new pdf
       </Button>
 
-
       <div className="row ">
-        {data && titles.map((title) => {
-          return (
-            <div key={title} className="col-4 col-md-3">
-              <Scorelist props={data} title={title} />
-            </div>
-          );
-        })}
-
-
-        </div>
+        {data &&
+          titles.map((title) => {
+            return (
+              <div key={title} className="col-4 col-md-3">
+                <Scorelist props={data} title={title} />
+              </div>
+            );
+          })}
+      </div>
       <Myverticallycenteredmodal
         show={modalShow}
         onHide={() => setModalShow(false)}

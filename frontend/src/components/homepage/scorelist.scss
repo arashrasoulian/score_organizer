@@ -9,8 +9,27 @@
 .homepage-list-eachbox {
   background-color: $sunny-yellow;
   font-size: 0.7rem;
-line-height: 12px;
+  line-height: 12px;
 }
-.homepage-list-box-name{
-  color:$ocean-teal;
+
+.homepage-list-box-name {
+  color: $ocean-teal;
+}
+
+.scorelist-link {
+  text-decoration: none !important;
+  color: $ocean-teal;
+}
+.pdf-scorepage embed{
+  height: 85vh;
+}
+.scorepage-descriptions{
+  color :$ocean-teal ;
+  margin-top: 20vh !important;
+}
+.scorepage-descriptions h1{
+  font-size: 1.5rem;
+}
+.scorepage-descriptions h2{
+  font-size: 1.3rem;
 }
