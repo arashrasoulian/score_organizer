@@ -2,18 +2,26 @@ module Api
   module V1
     class ScoresController < ApplicationController
 
-      # def index
-      #   @scores = current_user.scores
-      #   scores_with_images = @scores.map do |score|
-      #     if score.image.attached?
-      #       score.as_json.merge(score_pdf: url_for(score.image))
-      #     else
-      #       score.as_json.merge(score_pdf: nil)
-      #     end
-      #   end
-      #   render json: scores_with_images
-      # end
 
+      def home_page_data
+        # 5 latest uploaded scores
+        new_uploaded_scores = Score.order(created_at: :desc).limit(5)
+
+        # 5 random scores for "Most Popular"
+        most_popular_scores = Score.order("RANDOM()").limit(5)
+
+        # 5 random scores for "For You"
+        for_you_scores = Score.order("RANDOM()").limit(5)
+
+        instruments = ['viola', 'violin', 'cello', 'piano', 'vocal']
+
+        # Building the response with additional random instrument for each score
+        render json: {
+          new_uploaded_scores: new_uploaded_scores.map { |score| format_score(score, instruments) },
+          most_popular_scores: most_popular_scores.map { |score| format_score(score, instruments) },
+          for_you_scores: for_you_scores.map { |score| format_score(score, instruments) }
+        }
+      end
       def index
         @scores = current_user.scores
         render json: @scores.map { |score| score_with_urls(score) }
@@ -41,6 +49,14 @@ module Api
           pdf_url: score.pdf.attached? ? rails_blob_url(score.pdf) : nil,
           score_pdf: score.score_pdf
         )
+      end
+
+      def format_score(score, instruments)
+        {
+          name: score.name,
+          composer: score.composer,
+          instrument: instruments.sample # Picks a random instrument
+        }
       end
     end
   end

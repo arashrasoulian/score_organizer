@@ -5,7 +5,6 @@
 
 // import pages
 @import "./pages/homepage/homepage.scss";
-@import "./pages/homepage/colorboxes.scss";
 @import "./pages/landingpage/landingpage.scss";
 
 
@@ -13,3 +12,4 @@
 // import components
 @import "./components/navbar/navbar.scss";
 @import "./components/landingpage/slideshow.scss";
+@import "./components/homepage/scorelist.scss"

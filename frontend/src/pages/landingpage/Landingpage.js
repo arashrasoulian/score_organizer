@@ -9,7 +9,6 @@ export default function Landingpage() {
   const { data, loading, error } = useFetch(
     "http://localhost:3000/api/v1/statistics"
   );
-  console.log(data, loading, error);
 
   return (
     <div className="landingpage-container">
