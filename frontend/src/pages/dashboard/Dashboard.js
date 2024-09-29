@@ -1,12 +1,12 @@
 import React from "react";
 
-import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
+import Sidebar from "../../components/dashboardcomponents/Sidebar";
 
 export function Dashboard() {
   return (
     <div>
-      <div className="container-fluid">
+      <div className="">
         <div className="row flex-nowrap">
           <Sidebar />
           <Outlet />
