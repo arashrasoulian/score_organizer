@@ -3,16 +3,15 @@
 .homepage-container {
   width: 100vw;
   height: calc(100vh - 50px);
-  overflow: hidden;
 }
 
-.homepage-top-cover{
+.homepage-top-cover {
   background-image: url(../../../public/images/homepagecover.png);
   height: 50vh;
   width: 100%;
-  background-position: center center; /* Vertically centers the image */
-  background-size: 100% auto; /* Stretches the image horizontally to full width, auto for height */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-position: center center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
   position: relative;
   display: flex;
   justify-content: center;
@@ -20,70 +19,73 @@
   overflow: hidden;
   position: relative;
 }
-.homepage-top-cover h1{
+
+.homepage-top-cover h1 {
   position: absolute;
-  top:10vh;
+  top: 10vh;
   left: 3vw;
-  color: white ;
+  color: white;
   font-size: 2rem;
   width: 20vw;
   text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-.classroom-button-container {
-  display: flex;
-  justify-content: center; /* Horizontally centers the button */
-  align-items: center; /* Vertically centers the button */
-  height: 100vh; /* 100% of the viewport height */
-}
-
-.classroom-button-homepage {
-  background-color: $slate-blue !important;
-  height: 20vh !important;
-  width: 40vh !important;
-  padding: 10px 20px;
-  font-size: 16px;
+.introduction-homepage-title {
   text-align: center;
-  justify-content: center !important;
-  border-radius: 10px;
+  color: $deep-navy;
+  margin: 10vh 0px!important;
 }
 
+.introduction-homepage-first-picture ,.introduction-homepage-second-picture, .introduction-homepage-third-picture{
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  background-position: center center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  margin-top: 30px;
+}
+.introduction-homepage-first-picture{
+  background-image: url(../../../public/images/homepage-circle/homepage-circle1.png);
 
-/* Optional: Adds some styling to the button */
+}
+.introduction-homepage-second-picture{
+  background-image: url(../../../public/images/homepage-circle/homepage-circle4.png);
 
+}
+.introduction-homepage-third-picture{
+  background-image: url(../../../public/images/homepage-circle/homepage-circle5.png);
+}
 
-.button-homepage-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 40px !important;
-  width: 100%;
+.introduction-homepage-verticalline {
+  border-right: 2px solid rgb(170, 166, 166);
+  margin-left: 20px;
+  max-height: 170px;
+  margin-top: 50px;
+}
+
+.introduction-homepage-first-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  margin-left: 10vw;
+}
+.introduction-homepage-second-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 50vw;
+}
+.introduction-homepage-third-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20vw;
 }
 
-.button-bottom-homepage {
-  background-color: $sky-blue !important;
-  height: 40px !important;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
+.introduction-homepage-text {
+  margin-top: 80px;
+  width: 200px;
+  margin-left: 20px;
 }
 
-.link-bottom-homepage {
-  color: white;
-  text-decoration: none;
-
+.introduction-homepage-text p {
+  font-size: 0.8rem;
 }
