@@ -1,0 +1,11 @@
+.dashboard-sidebar-container{
+  background-color: $light-blue;
+  margin-left: 5vw;
+}
+.dashboard-sidebar-container li :hover{
+  color: $deep-navy;
+}
+.dashboard-sidebar-container li {
+  border-bottom: 2px solid white;
+  margin-top: 5px;
+}
