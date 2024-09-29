@@ -2,18 +2,14 @@ module Api
   module V1
     class ScoresController < ApplicationController
       def home_page_data
-        # 5 latest uploaded scores
         new_uploaded_scores = Score.order(created_at: :desc).limit(5)
 
-        # 5 random scores for "Most Popular"
         most_popular_scores = Score.order("RANDOM()").limit(5)
 
-        # 5 random scores for "For You"
         for_you_scores = Score.order("RANDOM()").limit(5)
 
         instruments = ["viola", "violin", "cello", "piano", "vocal"]
 
-        # Building the response with additional random instrument for each score
         render json: {
           new_uploaded_scores: new_uploaded_scores.map { |score| format_score(score, instruments) },
           most_popular_scores: most_popular_scores.map { |score| format_score(score, instruments) },
@@ -25,6 +21,14 @@ module Api
         @scores = current_user.scores
         render json: @scores.map { |score| score_with_urls(score) }
       end
+
+      def show
+        score = Score.find(params[:id])
+        render json: score_with_urls(score)
+      rescue ActiveRecord::RecordNotFound
+        render json: { error: 'Score not found' }, status: 404
+      end
+
 
       def create
         @score = current_user.scores.build(score_params)
@@ -50,6 +54,7 @@ module Api
 
       def format_score(score, instruments)
         {
+          id: score.id,
           name: score.name,
           composer: score.composer,
           instrument: instruments.sample, # Picks a random instrument

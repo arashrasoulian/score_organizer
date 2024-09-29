@@ -16,6 +16,7 @@ import Personaldata from "../pages/dashboard/dashboardpages/Personaldata";
 import Myclasses from "../pages/dashboard/dashboardpages/Myclasses";
 import Classesnotes from "../pages/dashboard/dashboardpages/Classesnotes";
 import Scores from "../pages/dashboard/dashboardpages/Scores";
+import ScorePage from "../pages/scorepage/Scorepage";
 
 const ProtectedRoute = ({ children }) => {
   const currUser = useSelector((state) => state.user.currUser);
@@ -40,7 +41,6 @@ const User = () => {
   // }, [dispatch]);
 
   return (
-
     <Router>
       <div>
         <Navbar />
@@ -88,6 +88,15 @@ const User = () => {
             }
           />
           <Route
+            path="/scores/:id"
+            element={
+              <ProtectedRoute>
+                <ScorePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
@@ -119,11 +128,11 @@ const User = () => {
                 </ProtectedRoute>
               }
             />
-             <Route
+            <Route
               path="scores"
               element={
                 <ProtectedRoute>
-                  <Scores/>
+                  <Scores />
                 </ProtectedRoute>
               }
             />
