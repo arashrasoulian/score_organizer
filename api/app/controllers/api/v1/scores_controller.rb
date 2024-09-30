@@ -1,7 +1,6 @@
 module Api
   module V1
     class ScoresController < ApplicationController
-      
       def home_page_data
         new_uploaded_scores = Score.order(created_at: :desc).limit(5)
 
@@ -19,17 +18,24 @@ module Api
       end
 
       def index
-        @scores = current_user.scores
-        render json: @scores.map { |score| score_with_urls(score) }
+        # Fetch all scores uploaded by the user
+        uploaded_scores = current_user.scores
+        # Fetch all scores added to the user's collection via 'Storing'
+        stored_scores = current_user.stored_scores.includes(:user)
+
+        # Combine both uploaded and stored scores, remove duplicates
+        all_scores = (uploaded_scores + stored_scores).uniq
+
+        # Send only the required information for each score
+        render json: all_scores.map { |score| formatted_score(score) }
       end
 
       def show
         score = Score.find(params[:id])
         render json: score_with_urls(score)
       rescue ActiveRecord::RecordNotFound
-        render json: { error: 'Score not found' }, status: 404
+        render json: { error: "Score not found" }, status: 404
       end
-
 
       def create
         @score = current_user.scores.build(score_params)
@@ -41,6 +47,34 @@ module Api
       end
 
       private
+
+      def instruments
+        ["viola", "violin", "cello", "piano", "vocal"]
+      end
+
+      # Format the score based on whether it was uploaded by the user or added via 'Storing'
+      def formatted_score(score)
+        if score.user == current_user
+          # Score uploaded by the current user
+          {
+            id: score.id,
+            name: score.name,
+            composer: score.composer,
+            instrument: instruments.sample,
+            session_type: nil, # No session_type for uploaded scores
+          }
+        else
+          # Score added via 'Storing'
+          storing = current_user.storings.find_by(score: score)
+          {
+            id: score.id,
+            name: score.name,
+            composer: score.composer,
+            instrument: instruments.sample,
+            session_type: storing&.session_type, # Include session_type for stored scores
+          }
+        end
+      end
 
       def score_params
         params.require(:score).permit(:score_pdf, :name, :composer, :score_type, :pdf)

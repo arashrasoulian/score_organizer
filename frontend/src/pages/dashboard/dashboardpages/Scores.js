@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { Myverticallycenteredmodal } from "../../../components/dashboardcomponents/Myverticallycenteredmodal";
@@ -7,13 +7,30 @@ import Scorelist from "../../../components/homepage/Scorelist";
 
 const Scores = () => {
   const [modalShow, setModalShow] = React.useState(false);
+  const [groupedScores, setGroupedScores] = useState({});
+
   const { data, loading, error } = useFetch(
     "http://localhost:3000/api/v1/scores"
   );
   const titles = ["Repertoire", "Practicing", "orcestral", "for future"];
 
+  const groupScoresBySessionType = (scores) => {
+    return scores.reduce((acc, score) => {
+      const sessionType = score.session_type || "Uploaded"; // Use 'Uploaded' for scores without session_type
+      if (!acc[sessionType]) {
+        acc[sessionType] = [];
+      }
+      acc[sessionType].push(score);
+      return acc;
+    }, {});
+  };
+
   useEffect(() => {
-    console.log(data);
+    if (data) {
+      const grouped = groupScoresBySessionType(data);
+      setGroupedScores(grouped);
+      console.log(groupedScores);
+    }
   }, [data]);
 
   const currUser = useSelector((state) => state.user.currUser);
@@ -59,6 +76,16 @@ const Scores = () => {
             );
           })}
       </div>
+
+      <div className="row ">
+        {groupedScores &&
+          Object.keys(groupedScores).map((item, i) => (
+            <div key={item + i} className="col-4 col-md-3">
+              <Scorelist props={i} title={item} />
+            </div>
+          ))}
+      </div>
+
       <Myverticallycenteredmodal
         show={modalShow}
         onHide={() => setModalShow(false)}
