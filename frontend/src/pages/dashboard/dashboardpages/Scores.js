@@ -8,15 +8,14 @@ import Scorelist from "../../../components/homepage/Scorelist";
 const Scores = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [groupedScores, setGroupedScores] = useState({});
-
   const { data, loading, error } = useFetch(
     "http://localhost:3000/api/v1/scores"
   );
-  const titles = ["Repertoire", "Practicing", "orcestral", "for future"];
+  const currUser = useSelector((state) => state.user.currUser);
 
   const groupScoresBySessionType = (scores) => {
     return scores.reduce((acc, score) => {
-      const sessionType = score.session_type || "Uploaded"; // Use 'Uploaded' for scores without session_type
+      const sessionType = score.session_type || "uploaded";
       if (!acc[sessionType]) {
         acc[sessionType] = [];
       }
@@ -25,15 +24,22 @@ const Scores = () => {
     }, {});
   };
 
+  const putObjectInArray = (scoreObject) => {
+    for (const property in scoreObject) {
+      setGroupedScores(prevState => ({
+        ...prevState,
+        [property]: scoreObject[property]
+      }));
+    }
+  };
+
   useEffect(() => {
     if (data) {
       const grouped = groupScoresBySessionType(data);
-      setGroupedScores(grouped);
-      console.log(groupedScores);
+      putObjectInArray(grouped);
     }
   }, [data]);
 
-  const currUser = useSelector((state) => state.user.currUser);
   if (!currUser) {
     return <p>Please log in to view your profile.</p>;
   }
@@ -65,25 +71,19 @@ const Scores = () => {
       >
         add new pdf
       </Button>
-
       <div className="row ">
-        {data &&
-          titles.map((title) => {
-            return (
-              <div key={title} className="col-4 col-md-3">
-                <Scorelist props={data} title={title} />
-              </div>
-            );
-          })}
-      </div>
-
-      <div className="row ">
-        {groupedScores &&
-          Object.keys(groupedScores).map((item, i) => (
-            <div key={item + i} className="col-4 col-md-3">
-              <Scorelist props={i} title={item} />
+        {Object.keys(groupedScores).length === 0 ? (
+          <p>No scores available</p>
+        ) : (
+          Object.keys(groupedScores).map((sessionType, index) => (
+            <div key={index} className="col-4 col-md-3">
+              <Scorelist
+                props={groupedScores[sessionType]}
+                title={sessionType}
+              />
             </div>
-          ))}
+          ))
+        )}
       </div>
 
       <Myverticallycenteredmodal
