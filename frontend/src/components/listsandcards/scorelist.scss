@@ -4,12 +4,16 @@
   text-align: center;
   background-color: $deep-navy;
   color: white;
+  margin: 0px 8px;
 }
 
 .homepage-list-eachbox {
   background-color: $sunny-yellow;
   font-size: 0.7rem;
   line-height: 12px;
+  margin: 8px;
+  // box-shadow: 0px 2px 6px 2px rgba(205, 176, 123, 0.1);
+
 }
 
 .homepage-list-box-name {
@@ -27,9 +31,7 @@
   color :$ocean-teal ;
   margin-top: 20vh !important;
 }
-.scorepage-descriptions h1{
-  font-size: 1.5rem;
-}
+
 .scorepage-descriptions h2{
   font-size: 1.3rem;
 }

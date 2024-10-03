@@ -1,8 +1,6 @@
-// src/components/navbar/Navbar.js
-import { Button, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCurrUser } from "../../store/userSlice";
-import Logout from "../Logout";
+import Logout from "../auth/Logout";
 import { Link } from "react-router-dom";
 
 export function Navbar() {
@@ -10,14 +8,12 @@ export function Navbar() {
   const currUser = useSelector((state) => state.user.currUser);
 
   function emailName( email ) {
-    // Extract the part before '@'
     const username = email.split('@')[0];
-
     return username;
   }
 
   return (
-    <nav className="navbar-container sticky-top">
+    <nav className="navbar-container  fixed-top">
       <div className="navbar-left">
         <Link to="/" className="navbar-logo">
           <img src="logo2.png" alt="Logo" />
@@ -39,7 +35,7 @@ export function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/dashboard/scores" className="nav-link">
+            <Link to="/dashboard/Myscores" className="nav-link">
               Dashboard
             </Link>
 

@@ -1,55 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Document, Page, ReactPDF } from "react-pdf"; // To display the PDF
 import useFetch from "../../hooks/useFetch"; // Your custom useFetch hook
 import { useSelector } from "react-redux";
 
 const ScorePage = () => {
   const { id } = useParams(); // Get the score ID from the URL
-  const [score, setScore] = useState(null);
   const [sessionType, setSessionType] = useState("repertoire");
   const [message, setMessage] = useState("");
   const token = useSelector((state) => state.user.token);
-
-
   const { data, loading, error } = useFetch(
     `http://localhost:3000/api/v1/scores/${id}`
   );
+
   const handleSessionTypeChange = (e) => {
     setSessionType(e.target.value);
   };
 
   const handleSaveScore = async () => {
- 
     try {
       const formData = new FormData();
-      formData.append('storing[score_id]', data.id);
-      formData.append('storing[session_type]', sessionType);
+      formData.append("storing[score_id]", data.id);
+      formData.append("storing[session_type]", sessionType);
       const response = await fetch("http://localhost:3000/api/v1/storings", {
         method: "POST",
         body: formData,
         headers: {
           Authorization: ` ${token}`,
-        }
-      ,
-
+        },
         credentials: "include",
       });
-
       if (response.ok) {
         const data = await response.json();
         setMessage(data.message);
       } else {
         setMessage("Error adding score to your collection.");
-
       }
     } catch (error) {
       setMessage("Something went wrong.");
       console.log(error);
-
     }
   };
-
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data: {error.message}</p>;

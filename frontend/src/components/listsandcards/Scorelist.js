@@ -12,7 +12,6 @@ export default function Scorelist({ props, title }) {
               <div> {item.composer}</div>
               <div> {item.instrument}</div>
             </Link>
-            <hr />
           </div>
         );
       })}

@@ -1,11 +1,9 @@
-// src/components/Logout.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearCurrUser } from '../store/userSlice';
+import { clearCurrUser } from '../../store/userSlice';
 
 const Logout = () => {
   const dispatch = useDispatch();
-
   const logout = async () => {
     try {
       const response = await fetch("http://localhost:3000/logout", {
@@ -15,10 +13,8 @@ const Logout = () => {
           "authorization": localStorage.getItem("token")
         },
       });
-
       const data = await response.json();
       if (!response.ok) throw data.error;
-
       localStorage.removeItem("token");
       dispatch(clearCurrUser());
     } catch (error) {

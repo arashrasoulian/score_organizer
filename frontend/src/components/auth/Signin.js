@@ -1,10 +1,9 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../store/userSlice";
+import { setToken } from "../../store/userSlice";
 const Signin = ({ setCurrUser }) => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const formRef = useRef();
   const login = async (userInfo, setCurrUser) => {
@@ -22,13 +21,11 @@ const Signin = ({ setCurrUser }) => {
       const data = await response.json();
 
       if (!response.ok) throw data.error;
-
       const token = response.headers.get("Authorization");
-      dispatch(setCurrUser(data));  // Set user data
-      dispatch(setToken(token));    // Set token separately
+      dispatch(setCurrUser(data));
+      dispatch(setToken(token));
 
       localStorage.setItem("token", token);
-
 
       setCurrUser(data);
       navigate("/");
@@ -51,9 +48,9 @@ const Signin = ({ setCurrUser }) => {
     navigate("/signup");
   };
   return (
-    <div>
-      <form ref={formRef} onSubmit={handleSubmit}>
-        Email: <input type="email" name="email" placeholder="email" />
+    <div className="m-5">
+      <form ref={formRef} onSubmit={handleSubmit} >
+        Email: <input type="email" name="email" placeholder="email" className="mt-5"/>
         <br />
         Password:{" "}
         <input type="password" name="password" placeholder="password" />

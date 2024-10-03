@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { Myverticallycenteredmodal } from "../../../components/dashboardcomponents/Myverticallycenteredmodal";
 import useFetch from "../../../hooks/useFetch";
-import Scorelist from "../../../components/homepage/Scorelist";
+import Scorelist from "../../../components/listsandcards/Scorelist";
 
-const Scores = () => {
+const Myscores = () => {
   const [modalShow, setModalShow] = React.useState(false);
   const [groupedScores, setGroupedScores] = useState({});
   const { data, loading, error } = useFetch(
@@ -93,4 +93,4 @@ const Scores = () => {
     </div>
   );
 };
-export default Scores;
+export default Myscores;
