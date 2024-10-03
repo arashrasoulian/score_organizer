@@ -28,9 +28,8 @@ const Signin = ({ setCurrUser }) => {
       dispatch(setToken(token));    // Set token separately
 
       localStorage.setItem("token", token);
-      console.log("response2", token);
 
-    
+
       setCurrUser(data);
       navigate("/");
     } catch (error) {

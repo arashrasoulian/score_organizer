@@ -3,13 +3,9 @@ module Api
     class ScoresController < ApplicationController
       def home_page_data
         new_uploaded_scores = Score.order(created_at: :desc).limit(5)
-
         most_popular_scores = Score.order("RANDOM()").limit(5)
-
         for_you_scores = Score.order("RANDOM()").limit(5)
-
         instruments = ["viola", "violin", "cello", "piano", "vocal"]
-
         render json: {
           new_uploaded_scores: new_uploaded_scores.map { |score| format_score(score, instruments) },
           most_popular_scores: most_popular_scores.map { |score| format_score(score, instruments) },
@@ -18,15 +14,9 @@ module Api
       end
 
       def index
-        # Fetch all scores uploaded by the user
         uploaded_scores = current_user.scores
-        # Fetch all scores added to the user's collection via 'Storing'
         stored_scores = current_user.stored_scores.includes(:user)
-
-        # Combine both uploaded and stored scores, remove duplicates
         all_scores = (uploaded_scores + stored_scores).uniq
-
-        # Send only the required information for each score
         render json: all_scores.map { |score| formatted_score(score) }
       end
 
