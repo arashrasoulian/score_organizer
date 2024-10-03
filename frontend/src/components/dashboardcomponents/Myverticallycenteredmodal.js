@@ -19,18 +19,12 @@ export function Myverticallycenteredmodal(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
-
-
     const formData = new FormData();
     formData.append("score[pdf]", pdfFile);
     formData.append("score[name]", name);
     formData.append("score[composer]", composer);
     formData.append("score[score_type]", scoreType);
-
-
     try {
-      
       const response = await fetch("http://localhost:3000/api/v1/scores", {
         method: "POST",
         body: formData,
@@ -42,7 +36,6 @@ export function Myverticallycenteredmodal(props) {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         setMessage("Score added successfully!");
         console.log("Success:", data);
@@ -72,9 +65,13 @@ export function Myverticallycenteredmodal(props) {
         <form onSubmit={handleSubmit}>
           <div>
             <label>image:</label>
-            <input type="file" accept="application/pdf" onChange={handleFileChange} required />
+            <input
+              type="file"
+              accept="application/pdf"
+              onChange={handleFileChange}
+              required
+            />
           </div>
-
           <div>
             <label>Name:</label>
             <input

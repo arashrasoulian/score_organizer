@@ -2,12 +2,33 @@
 
 .homepage-container {
   width: 100vw;
-  height: calc(100vh - 50px);
+  height: 100vh ;
+  overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
 }
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px $light-gray;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $ocean-teal;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $deep-navy;
+}
 .homepage-top-cover {
-  background-image: url(../../../public/images/homepagecover.png);
-  height: 50vh;
+  background-image: url(../../../public/images/homepagecover2.png);
+  height: 60vh;
   width: 100%;
   background-position: center center;
   background-size: 100% auto;
@@ -18,11 +39,12 @@
   align-items: center;
   overflow: hidden;
   position: relative;
+  border: 2px solid white;
 }
 
 .homepage-top-cover h1 {
   position: absolute;
-  top: 10vh;
+  top: 20vh;
   left: 3vw;
   color: white;
   font-size: 2rem;

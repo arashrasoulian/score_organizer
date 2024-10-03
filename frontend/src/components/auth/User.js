@@ -6,17 +6,17 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { Navbar } from "./navbar/Navbar";
-import { Dashboard } from "../pages/dashboard/Dashboard";
-import Homepage from "../pages/homepage/Homepage";
-import Landingpage from "../pages/landingpage/Landingpage";
-import Signin from "../pages/signinsignup/Signin";
-import Signup from "../pages/signinsignup/Signup";
-import Personaldata from "../pages/dashboard/dashboardpages/Personaldata";
-import Myclasses from "../pages/dashboard/dashboardpages/Myclasses";
-import Classesnotes from "../pages/dashboard/dashboardpages/Classesnotes";
-import Scores from "../pages/dashboard/dashboardpages/Scores";
-import ScorePage from "../pages/scorepage/Scorepage";
+import { Navbar } from "../navbar/Navbar";
+import { Dashboard } from "../../pages/dashboard/Dashboard";
+import Homepage from "../../pages/homepage/Homepage";
+import Landingpage from "../../pages/landingpage/Landingpage";
+import Signin from "../../pages/signinsignup/Signin";
+import Signup from "../../pages/signinsignup/Signup";
+import Personaldata from "../../pages/dashboard/dashboardpages/Personaldata";
+import ScorePage from "../../pages/scorepage/Scorepage";
+import Notifications from "../../pages/dashboard/dashboardpages/Notifications";
+import Myscores from "../../pages/dashboard/dashboardpages/Myscores";
+import Statistics from "../../pages/dashboard/dashboardpages/Statistics";
 
 const ProtectedRoute = ({ children }) => {
   const currUser = useSelector((state) => state.user.currUser);
@@ -30,20 +30,10 @@ const PublicRoute = ({ children }) => {
 
 const User = () => {
   const currUser = useSelector((state) => state.user.currUser);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   // Check localStorage for user data on app load
-  //   const storedUser = localStorage.getItem("currUser");
-  //   if (storedUser) {
-  //     dispatch(setCurrUser(JSON.parse(storedUser))); // Hydrate the state with stored user data
-  //   }
-  // }, [dispatch]);
-
   return (
     <Router>
       <div>
-        <Navbar />
+        <Navbar/>
         <Routes>
           <Route
             path="/"
@@ -113,26 +103,26 @@ const User = () => {
               }
             />
             <Route
-              path="myclasses"
+              path="Notifications"
               element={
                 <ProtectedRoute>
-                  <Myclasses />
+                  <Notifications />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="classesnotes"
+              path="Myscores"
               element={
                 <ProtectedRoute>
-                  <Classesnotes />
+                  <Myscores />
                 </ProtectedRoute>
               }
             />
             <Route
-              path="scores"
+              path="Statistics"
               element={
                 <ProtectedRoute>
-                  <Scores />
+                  <Statistics />
                 </ProtectedRoute>
               }
             />

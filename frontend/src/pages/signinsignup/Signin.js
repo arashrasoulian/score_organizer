@@ -1,4 +1,4 @@
-import Signin from "../../components/Signin";
+import Signin from "../../components/auth/Signin";
 import { useDispatch } from "react-redux";
 import { setCurrUser } from "../../store/userSlice";
 

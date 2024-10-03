@@ -1,12 +1,11 @@
 import "./homepage.scss";
-import Scorelist from "../../components/homepage/Scorelist";
+import Scorelist from "../../components/listsandcards/Scorelist";
 import useFetch from "../../hooks/useFetch";
 
 export default function Homepage() {
   const titles = [
     ["New songs", "new_uploaded_scores"],
     ["For you", "for_you_scores"],
-
     ["Most popullar", "most_popular_scores"],
   ];
   const { data, loading, error } = useFetch(
@@ -18,7 +17,7 @@ export default function Homepage() {
 
   return (
     <div className="homepage-container">
-      <div className="homepage-top-cover  ">
+      <div className="homepage-top-cover ">
         <h1>Discover the Beauty of Music</h1>
       </div>
       <div className="row m-5">
@@ -56,7 +55,6 @@ export default function Homepage() {
               </p>
             </div>
           </div>
-
           <div className="introduction-homepage-third-container">
             <div className="introduction-homepage-third-picture"></div>
             <div className="introduction-homepage-verticalline"></div>
