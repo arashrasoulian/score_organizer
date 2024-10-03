@@ -8,7 +8,6 @@ const Fileviewer = ({ fileUrl }) => {
   const isImage = (fileUrl) => {
     return fileUrl.toLowerCase().match(/\.(jpeg|jpg|png|gif)$/);
   };
-  console.log("url", fileUrl);
 
   return (
     <div>
