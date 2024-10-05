@@ -1,24 +1,42 @@
-.hompage-list-container {}
+
 
 .homepage-list-title {
   text-align: center;
-  background-color: $deep-navy;
-  color: white;
-  margin: 0px 8px;
+  // background-color: $deep-navy;
+  box-shadow: 0px 2px 6px 2px rgba(30,42,94, 0.5);
+  border-radius: 5px;
+  color: $deep-navy;
+  margin: 8px -8px;
 }
 
 .homepage-list-eachbox {
-  background-color: $sunny-yellow;
+  // background-color: $sunny-yellow;
   font-size: 0.7rem;
   line-height: 12px;
-  margin: 8px;
-  // box-shadow: 0px 2px 6px 2px rgba(205, 176, 123, 0.1);
+  margin:  8px -8px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px 2px rgba(205, 176, 123, 0.5);
 
 }
 
-.homepage-list-box-name {
-  color: $ocean-teal;
-}
+.homepage-list-eachbox {
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 
 .scorelist-link {
   text-decoration: none !important;
