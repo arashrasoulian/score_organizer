@@ -69,6 +69,7 @@ module Api
             instrument: instruments.sample,
             session_type: nil,
             isOwner: true,
+
           }
         else
           storing = current_user.storings.find_by(score: score)
@@ -80,7 +81,8 @@ module Api
             session_type: storing&.session_type,
             isOwner: false,
             storingId: storing ? storing.id : nil,
-userId:score.user_id
+            uploader_email: score.user.email,
+
           }
         end
       end
@@ -102,6 +104,7 @@ userId:score.user_id
           name: score.name,
           composer: score.composer,
           instrument: instruments.sample,
+          uploader_email: score.user.email,
         }
       end
     end
