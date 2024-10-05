@@ -13,7 +13,7 @@ module Api
         }
       end
 
-      def index
+      def index # Find the score associated with the current user
         uploaded_scores = current_user.scores
         stored_scores = current_user.stored_scores.includes(:user)
         all_scores = (uploaded_scores + stored_scores).uniq
@@ -36,6 +36,22 @@ module Api
         end
       end
 
+      def destroy
+        @score = Score.find(params[:id]) # Find the score associated with the current user
+        @score.destroy
+
+        if @score.pdf.attached?
+          # Delete the attached PDF from S3
+          @score.pdf.purge # Purge deletes the file from ActiveStorage and the underlying storage service (e.g., S3)
+        end
+
+        if @score.destroy
+          render json: { message: "Score deleted successfully" }, status: :ok
+        else
+          render json: { error: "Failed to delete score" }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def instruments
@@ -51,17 +67,20 @@ module Api
             name: score.name,
             composer: score.composer,
             instrument: instruments.sample,
-            session_type: nil, # No session_type for uploaded scores
+            session_type: nil,
+            isOwner: true,
           }
         else
-          # Score added via 'Storing'
           storing = current_user.storings.find_by(score: score)
           {
             id: score.id,
             name: score.name,
             composer: score.composer,
             instrument: instruments.sample,
-            session_type: storing&.session_type, # Include session_type for stored scores
+            session_type: storing&.session_type,
+            isOwner: false,
+            storingId: storing ? storing.id : nil,
+userId:score.user_id
           }
         end
       end
@@ -82,7 +101,7 @@ module Api
           id: score.id,
           name: score.name,
           composer: score.composer,
-          instrument: instruments.sample, # Picks a random instrument
+          instrument: instruments.sample,
         }
       end
     end
