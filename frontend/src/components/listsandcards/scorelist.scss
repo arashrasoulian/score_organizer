@@ -48,3 +48,25 @@ position: absolute;
 top:0;
 right: 0;
 }
+.uploader-list-info{
+  position: absolute;
+  bottom: 100%; /* Position it above the card */
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.uploader-list :hover{
+  display: block !important;
+}
+.scorelist-link:hover .uploader-list-info {
+  opacity: 1;
+  visibility: visible;
+}

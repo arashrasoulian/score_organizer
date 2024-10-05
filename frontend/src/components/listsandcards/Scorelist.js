@@ -10,6 +10,10 @@ export default function Scorelist({ props, title }) {
   };
 
   if (isDeleted) return null; // Don't render if the card is deleted
+  function emailName(email) {
+    const username = email.split("@")[0];
+    return username;
+  }
 
   return (
     <div className="hompage-list-container">
@@ -26,17 +30,20 @@ export default function Scorelist({ props, title }) {
               </div>
               <div> {item.composer}</div>
               <div> {item.instrument}</div>
-              <div className="delete-button-scorelist">
-              {item.session_type || item.isOwner ? (
-                <DeleteButton
-                  storingId={item.storingId}
-                  scoreId={item.id}
-                  isOwner={item.isOwner}
-                  onDeleteSuccess={handleDeleteSuccess}
-                />
-              ) : null}
+              <div className="uploader-list-info">
+                Uploaded by:{" "}
+                {item.uploader_email ? emailName(item.uploader_email) : "you"}
               </div>
-
+              <div className="delete-button-scorelist">
+                {item.session_type || item.isOwner ? (
+                  <DeleteButton
+                    storingId={item.storingId}
+                    scoreId={item.id}
+                    isOwner={item.isOwner}
+                    onDeleteSuccess={handleDeleteSuccess}
+                  />
+                ) : null}
+              </div>
             </Link>
           </div>
         );
