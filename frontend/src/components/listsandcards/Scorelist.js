@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DeleteButton from "./DeleteButton";
 export default function Scorelist({ props, title }) {
-  console.log(props);
   const [isDeleted, setIsDeleted] = useState(false); // Track if the card is deleted
-
   const handleDeleteSuccess = () => {
     setIsDeleted(true); // Remove the card from the UI when deleted
   };

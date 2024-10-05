@@ -64,14 +64,13 @@ const Myscores = () => {
         </div>
       </div>
 
-      <Button
-        variant="primary"
+      <div
         onClick={() => setModalShow(true)}
-        className="m-4"
+        className="mx-4 mt-4 py-2 px-3 myscore-addnewpdf-button col-4 col-md-3"
       >
         add new pdf
-      </Button>
-      <div className="row ">
+      </div>
+      <div className="row mx-4 mt-1">
         {Object.keys(groupedScores).length === 0 ? (
           <p>No scores available</p>
         ) : (
