@@ -13,9 +13,19 @@ module Api
         end
       end
 
+      def destroy
+        @storing = Storing.find(params[:id]) # Find the score associated with the current user
+        @storing.destroy
+
+        if @storing.destroy
+          render json: { message: "Score deleted successfully" }, status: :ok
+        else
+          render json: { error: "Failed to delete score" }, status: :unprocessable_entity
+        end
+      end
+
       private
 
-      # Strong parameters for creating a new storing
       def storing_params
         params.require(:storing).permit(:session_type, :score_id)
       end

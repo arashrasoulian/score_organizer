@@ -41,15 +41,10 @@
 .scorelist-link {
   text-decoration: none !important;
   color: $ocean-teal;
+  position: relative;
 }
-.pdf-scorepage embed{
-  height: 85vh;
-}
-.scorepage-descriptions{
-  color :$ocean-teal ;
-  margin-top: 20vh !important;
-}
-
-.scorepage-descriptions h2{
-  font-size: 1.3rem;
+.delete-button-scorelist{
+position: absolute;
+top:0;
+right: 0;
 }
