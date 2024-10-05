@@ -20,7 +20,7 @@ export default function Homepage() {
       <div className="homepage-top-cover ">
         <h1>Discover the Beauty of Music</h1>
       </div>
-      <div className="row m-5">
+      <div className="row homepage-lists-container">
         {titles.map((title) => {
           return (
             <div key={title} className="col-4 col-md-3">
