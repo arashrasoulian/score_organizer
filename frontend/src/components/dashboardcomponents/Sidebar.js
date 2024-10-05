@@ -1,7 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
+  const location = useLocation();
+  const isActive = (path) => location.pathname === path;
+console.log(isActive('/dashboard/Myscores') ? 'active' : '');
+
+
   return (
     <div className="col-auto col-md-3 col-xl-2 px-0 dashboard-sidebar-container">
       <div className=" align-items-center   pt-5  text-white min-vh-100">
@@ -19,6 +24,7 @@ const Sidebar = () => {
             <Link
               to="/dashboard/Myscores"
               className="nav-link px-0 align-middle "
+              // className={isActive('/dashboard/Myscores') ? 'active' : ''}
             >
               <i className="fa-solid fa-music"></i>
               <span className="ms-1 d-none d-sm-inline">My Scores</span>
