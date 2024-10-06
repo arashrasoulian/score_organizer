@@ -1,7 +1,6 @@
 import "./homepage.scss";
 import Scorelist from "../../components/listsandcards/Scorelist";
 import useFetch from "../../hooks/useFetch";
-
 export default function Homepage() {
   const titles = [
     ["New songs", "new_uploaded_scores"],
@@ -23,11 +22,16 @@ export default function Homepage() {
       <div className="row homepage-lists-container">
         {titles.map((title) => {
           return (
-            <div key={title} className="col-4 col-md-3">
+            <div key={title} className="col-12 col-md-4 col-lg-3">
               <Scorelist props={data[title[1]]} title={title[0]} />
             </div>
           );
         })}
+        <div className="homepage-ad-container col-12 col-md-4 col-lg-3 mt-2">
+          <div className="homepage-ad-backgroundcolor">advertisement
+            <div className="homepage-ad-image"></div>
+          </div>
+        </div>
         <div>
           <div className="introduction-homepage-title ">
             SHEET MUSIC TO DOWNLOAD, PRINT & PLAY FROM ANYWHERE
