@@ -43,11 +43,15 @@
   color: $ocean-teal;
   position: relative;
 }
-.delete-button-scorelist{
+.delete-button-scorelist-container{
 position: absolute;
-top:0;
-right: 0;
+top:10px;
+right: -10px;
 }
+.delete-button-scorelist{
+  color:$ocean-teal !important;
+}
+
 .uploader-list-info{
   position: absolute;
   bottom: 100%; /* Position it above the card */
@@ -69,4 +73,8 @@ right: 0;
 .scorelist-link:hover .uploader-list-info {
   opacity: 1;
   visibility: visible;
+}
+
+.delete-button-scorelist{
+  color:$ocean-teal !important;
 }

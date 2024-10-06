@@ -14,3 +14,7 @@
 @import "./components/landingpage/slideshow.scss";
 @import "./components/listsandcards/scorelist.scss";
 @import "./components/dashboardcomponents/sidebar.scss";
+
+.app-body-container{
+  overflow-x: hidden;
+}

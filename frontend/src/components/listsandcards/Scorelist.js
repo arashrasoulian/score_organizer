@@ -32,7 +32,7 @@ export default function Scorelist({ props, title }) {
                 Uploaded by:{" "}
                 {item.uploader_email ? emailName(item.uploader_email) : "you"}
               </div>
-              <div className="delete-button-scorelist">
+              <div className="delete-button-scorelist-container">
                 {item.session_type || item.isOwner ? (
                   <DeleteButton
                     storingId={item.storingId}
