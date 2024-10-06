@@ -31,15 +31,15 @@ const DeleteButton = ({ scoreId, isOwner, storingId, onDeleteSuccess }) => {
   };
 
   return (
-    <button className="btn" onClick={handleDelete} disabled={isDeleting}>
+    <button className="btn " onClick={handleDelete} disabled={isDeleting}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="14"
-        height="14"
+        width="12"
+        height="12"
         fill="currentColor"
-        class="bi bi-trash-fill"
+        className="bi bi-trash-fill delete-button-scorelist"
         viewBox="0 0 16 16"
-        color="red"
+
       >
         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
       </svg>
