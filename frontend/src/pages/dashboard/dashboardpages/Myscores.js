@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
 import { Myverticallycenteredmodal } from "../../../components/dashboardcomponents/Myverticallycenteredmodal";
 import useFetch from "../../../hooks/useFetch";
 import Scorelist from "../../../components/listsandcards/Scorelist";
