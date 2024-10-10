@@ -20,18 +20,23 @@ export default function Homepage() {
         <h1>Discover the Beauty of Music</h1>
       </div>
       <div className="row homepage-lists-container">
-        {titles.map((title) => {
-          return (
-            <div key={title} className="col-12 col-md-4 col-lg-3">
-              <Scorelist props={data[title[1]]} title={title[0]} />
-            </div>
-          );
-        })}
+        <div className="col-lg-7 col-12 row">
+          {titles.map((title) => {
+            return (
+              <div key={title} className="col-12 col-md-4 ">
+                <Scorelist props={data[title[1]]} title={title[0]} />
+              </div>
+            );
+          })}
+        </div>
+        <div className="col-lg-2"></div>
         <div className="homepage-ad-container col-12 col-md-4 col-lg-3 mt-2">
-          <div className="homepage-ad-backgroundcolor">advertisement
+          <div className="homepage-ad-backgroundcolor">
+            advertisement
             <div className="homepage-ad-image"></div>
           </div>
         </div>
+
         <div>
           <div className="introduction-homepage-title ">
             SHEET MUSIC TO DOWNLOAD, PRINT & PLAY FROM ANYWHERE
