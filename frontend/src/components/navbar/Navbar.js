@@ -19,7 +19,7 @@ export function Navbar() {
           <img src="logo2.png" alt="Logo" />
         </Link>
         {currUser ? (
-          <span className="welcome-navbar d-none d-md-block">hello {emailName(currUser.email)} </span>
+          <span className="welcome-navbar d-none d-md-block">hello {emailName(currUser.email).toUpperCase()} </span>
         ) : null}
       </div>
 
